@@ -14,8 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: docker build -f Containerfile -t claude .
-      - run: docker run --rm --entrypoint curl claude --version
       - run: docker run --rm claude --version
+      - run: docker run --rm --entrypoint curl claude --version
+      - run: docker run --rm --entrypoint go claude version
+      - run: docker run --rm --entrypoint python3 claude --version
       - uses: actions/setup-go@v7
         with:
           go-version-file: go.mod
