@@ -51,15 +51,15 @@ func main() {
 		"-s", "Claude Code-credentials", "-w").Output()
 	if err != nil {
 		log.Printf("not copying credentials: %v", err)
-	} else {
-		if err := os.WriteFile(filepath.Join(credsDir, ".credentials.json"), creds, 0o600); err != nil {
-			log.Fatal(err)
-		}
+	}
+	credsFile := filepath.Join(credsDir, ".credentials.json")
+	if err := os.WriteFile(credsFile, creds, 0o600); err != nil {
+		log.Fatal(err)
 	}
 
 	argv := []string{name, "run", "--rm", "-i", "-t",
 		"-v", cwd + ":" + workdir,
-		"-v", credsDir + ":/home/claude/.claude",
+		"-v", credsFile + ":/home/claude/.claude/.credentials.json",
 		"-w", workdir,
 		image,
 	}
