@@ -11,6 +11,8 @@ import (
 const (
 	image   = "ghcr.io/salisburygeneral/claude:latest"
 	workdir = "/workspace"
+	cpus    = "4"
+	memory  = "4096M"
 )
 
 func main() {
@@ -58,6 +60,8 @@ func main() {
 	}
 
 	argv := []string{name, "run", "--rm", "-i", "-t",
+		"--cpus", cpus,
+		"--memory", memory,
 		"-v", cwd + ":" + workdir,
 		"-v", credsFile + ":/home/claude/.claude/.credentials.json",
 		"-w", workdir,
