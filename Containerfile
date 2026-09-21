@@ -19,4 +19,9 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends claude-code=2.1.278-1 \
  && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["claude"]
+RUN useradd --create-home --uid 1000 --shell /bin/bash claude
+
+USER claude
+WORKDIR /workspace
+
+ENTRYPOINT ["claude", "--dangerously-skip-permissions"]
