@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"syscall"
 )
 
@@ -41,8 +42,24 @@ func main() {
 		log.Fatal(err)
 	}
 
+	credsDir, err := os.MkdirTemp("", "claude-launcher-credentials-")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	creds, err := exec.Command("security", "find-generic-password",
+		"-s", "Claude Code-credentials", "-w").Output()
+	if err != nil {
+		log.Printf("not copying credentials: %v", err)
+	} else {
+		if err := os.WriteFile(filepath.Join(credsDir, ".credentials.json"), creds, 0o600); err != nil {
+			log.Fatal(err)
+		}
+	}
+
 	argv := []string{name, "run", "--rm", "-i", "-t",
 		"-v", cwd + ":" + workdir,
+		"-v", credsDir + ":/home/claude/.claude",
 		"-w", workdir,
 		image,
 	}
