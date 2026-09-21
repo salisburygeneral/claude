@@ -1,0 +1,5 @@
+{
+  "allowedMcpServers": [],
+  "allowManagedMcpServersOnly": true,
+  "disableClaudeAiConnectors": true
+}
