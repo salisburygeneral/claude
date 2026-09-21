@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "automerge": true,
+  "packageRules": [
+    {
+      "matchDatasources": ["deb"],
+      "registryUrls": [
+        "https://deb.debian.org/debian?suite=trixie&components=main&binaryArch=arm64"
+      ]
+    },
+    {
+      "matchPackageNames": ["claude-code"],
+      "registryUrls": [
+        "https://downloads.claude.ai/claude-code/apt/latest?suite=latest&components=main&binaryArch=arm64"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,22 @@
-FROM node:22-slim
+FROM debian:trixie-slim
 
-RUN npm install -g @anthropic-ai/claude-code
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+      ca-certificates=20250419 \
+      curl=8.14.1-2+deb13u5 \
+      gnupg=2.4.7-21+deb13u1 \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN install -d -m 0755 /etc/apt/keyrings \
+ && curl -fsSL https://downloads.claude.ai/keys/claude-code.asc -o /etc/apt/keyrings/claude-code.asc \
+ && gpg --show-keys --with-colons /etc/apt/keyrings/claude-code.asc \
+    | grep -qx "fpr:::::::::31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE:" \
+ && echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code/apt/latest latest main" > /etc/apt/sources.list.d/claude-code.list
+
+RUN apt-get update \
+      -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/claude-code.list \
+      -o Dir::Etc::sourceparts=/dev/null \
+ && apt-get install -y --no-install-recommends claude-code=2.1.278-1 \
+ && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["claude"]
