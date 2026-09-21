@@ -69,6 +69,10 @@ func main() {
 	}
 	argv = append(argv, os.Args[1:]...)
 
+	if err := os.Setenv("HERDR_AGENT", "claude"); err != nil {
+		log.Fatal(err)
+	}
+
 	if err := syscall.Exec(cli, argv, os.Environ()); err != nil {
 		log.Fatal(err)
 	}
