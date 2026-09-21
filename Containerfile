@@ -5,7 +5,11 @@ RUN apt-get update \
       ca-certificates=20250419 \
       curl=8.14.1-2+deb13u5 \
       gnupg=2.4.7-21+deb13u1 \
+      python3=3.13.5-1 \
  && rm -rf /var/lib/apt/lists/*
+
+COPY --from=golang:1.27.1-trixie /usr/local/go /usr/local/go
+ENV PATH=/home/claude/go/bin:/usr/local/go/bin:$PATH
 
 RUN install -d -m 0755 /etc/apt/keyrings \
  && curl -fsSL https://downloads.claude.ai/keys/claude-code.asc -o /etc/apt/keyrings/claude-code.asc \
