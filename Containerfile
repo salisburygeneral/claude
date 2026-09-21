@@ -21,6 +21,9 @@ RUN apt-get update \
 
 RUN useradd --create-home --uid 1000 --shell /bin/bash claude
 
+COPY rootfs/ /
+RUN chown -R claude:claude /home/claude
+
 USER claude
 WORKDIR /workspace
 
