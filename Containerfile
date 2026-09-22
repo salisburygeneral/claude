@@ -5,6 +5,7 @@ RUN apt-get update \
       ca-certificates=20250419 \
       curl=8.14.1-2+deb13u5 \
       gnupg=2.4.7-21+deb13u1 \
+      jq=1.7.1-6+deb13u3 \
       python3=3.13.5-1 \
  && rm -rf /var/lib/apt/lists/*
 
