@@ -1,5 +1,6 @@
 {
   "allowedMcpServers": [],
   "allowManagedMcpServersOnly": true,
-  "disableClaudeAiConnectors": true
+  "disableClaudeAiConnectors": true,
+  "claudeMd": "You are running inside a container. /workspace is the only thing mounted in from the host; everything else belongs to the image and is discarded when the session ends. The image is deliberately minimal, so a missing tool is expected rather than a broken setup. If a cheap substitute exists, use it and move on. If the workaround would be onerous or burn real tokens, or the tool is one worth having on every run, stop and say what you need so it can be added to the image."
 }
