@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/sha256"
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -59,11 +61,19 @@ func main() {
 		log.Fatal(err)
 	}
 
+	sum := sha256.Sum256([]byte(cwd))
+	project := fmt.Sprintf("%x", sum[:8])
+	sessionsDir := filepath.Join(os.TempDir(), "claude-launcher-project-"+project)
+	if err := os.MkdirAll(sessionsDir, 0o700); err != nil {
+		log.Fatal(err)
+	}
+
 	argv := []string{name, "run", "--rm", "-i", "-t",
 		"--cpus", cpus,
 		"--memory", memory,
 		"-v", cwd + ":" + workdir,
 		"-v", credsFile + ":/home/claude/.claude/.credentials.json",
+		"-v", sessionsDir + ":/home/claude/.claude/projects",
 		"-w", workdir,
 		image,
 	}
