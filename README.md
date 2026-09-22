@@ -1,5 +1,7 @@
 # claude
 
+Runs Claude Code in a sandboxed container.
+
 ## Install
 
 To install / update:
