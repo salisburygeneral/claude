@@ -1,0 +1,18 @@
+{
+  "enableWeakerNestedSandbox": true,
+  "network": {
+    "allowedDomains": [
+      "api.anthropic.com",
+      "proxy.golang.org",
+      "sum.golang.org",
+      "storage.googleapis.com"
+    ],
+    "deniedDomains": []
+  },
+  "filesystem": {
+    "allowRead": ["/"],
+    "denyRead": [],
+    "allowWrite": ["/"],
+    "denyWrite": []
+  }
+}

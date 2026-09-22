@@ -75,8 +75,13 @@ func main() {
 		"-v", credsFile + ":/home/claude/.claude/.credentials.json",
 		"-v", sessionsDir + ":/home/claude/.claude/projects",
 		"-w", workdir,
-		image,
 	}
+
+	if v, ok := os.LookupEnv("AGENT_SANDBOX"); ok {
+		argv = append(argv, "-e", "AGENT_SANDBOX="+v)
+	}
+
+	argv = append(argv, image)
 	argv = append(argv, os.Args[1:]...)
 
 	if err := os.Setenv("HERDR_AGENT", "claude"); err != nil {
