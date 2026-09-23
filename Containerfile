@@ -26,7 +26,7 @@ RUN install -d -m 0755 /etc/apt/keyrings \
 RUN apt-get update \
       -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/claude-code.list \
       -o Dir::Etc::sourceparts=/dev/null \
- && apt-get install -y --no-install-recommends claude-code=2.1.278-1 \
+ && apt-get install -y --no-install-recommends claude-code=2.1.280-1 \
  && rm -rf /var/lib/apt/lists/*
 
 # renovate: datasource=npm depName=@anthropic-ai/sandbox-runtime
