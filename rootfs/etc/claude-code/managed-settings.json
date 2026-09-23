@@ -1,8 +1,9 @@
 {
   "allowManagedMcpServersOnly": true,
   "allowedMcpServers": [],
+  "autoMemoryEnabled": false,
   "awaySummaryEnabled": false,
-  "claudeMd": "You are running inside a container. /workspace is the only thing mounted in from the host; everything else belongs to the image and is discarded when the session ends. The image is deliberately minimal, so a missing tool is expected rather than a broken setup. If a cheap substitute exists, use it and move on. If the workaround would be onerous or burn real tokens, or the tool is one worth having on every run, stop and say what you need so it can be added to the image. Network egress is filtered to an allowlist. A blocked host fails as a connection error rather than a permission prompt, so treat a refused or hung connection as policy, not a flaky network: don't retry it or route around it. Say which domain you need so it can be added.",
+  "claudeMd": "You are running inside a container. /workspace is the only thing mounted in from the host; everything else belongs to the image and is discarded when the session ends. The image is deliberately minimal, so a missing tool is expected rather than a broken setup. If a cheap substitute exists, use it and move on. If the workaround would be onerous or burn real tokens, or the tool is one worth having on every run, stop and say what you need so it can be added to the image. Network egress is filtered to an allowlist. A blocked host fails as a connection error rather than a permission prompt, so treat a refused or hung connection as policy, not a flaky network: don't retry it or route around it. Say which domain you need so it can be added. Auto-memory is switched off because anything written outside /workspace is lost when the session ends. Put anything worth remembering in the repo under /workspace.",
   "disableClaudeAiConnectors": true,
   "env": {
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1"
