@@ -30,7 +30,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # renovate: datasource=npm depName=@anthropic-ai/sandbox-runtime
-ARG SANDBOX_RUNTIME_VERSION=0.0.77
+ARG SANDBOX_RUNTIME_VERSION=0.0.79
 RUN npm install -g --no-fund "@anthropic-ai/sandbox-runtime@${SANDBOX_RUNTIME_VERSION}" \
  && rm -rf /root/.npm
 
