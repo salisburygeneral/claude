@@ -14,7 +14,7 @@ RUN apt-get update \
       socat=1.8.0.3-1+deb13u1 \
  && rm -rf /var/lib/apt/lists/*
 
-COPY --from=golang:1.27.1-trixie /usr/local/go /usr/local/go
+COPY --from=golang:1.27.2-trixie /usr/local/go /usr/local/go
 ENV PATH=/home/claude/go/bin:/usr/local/go/bin:$PATH
 
 RUN install -d -m 0755 /etc/apt/keyrings \
