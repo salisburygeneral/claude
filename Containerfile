@@ -7,7 +7,7 @@ RUN apt-get update \
       curl=8.14.1-2+deb13u5 \
       gnupg=2.4.7-21+deb13u1 \
       jq=1.7.1-6+deb13u3 \
-      nodejs=20.19.2+dfsg-1+deb13u2 \
+      nodejs=20.19.2+dfsg-1+deb13u3 \
       npm=9.2.0~ds1-3 \
       python3=3.13.5-1 \
       ripgrep=14.1.1-1+b4 \
